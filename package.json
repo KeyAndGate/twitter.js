@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/KeyAndGate/twitter.js/issues"
   },
-  "homepage": "https://github.com/KeyAndGate/twitter.js#readme"
+  "homepage": "https://github.com/KeyAndGate/twitter.js#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
