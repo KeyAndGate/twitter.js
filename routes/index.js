@@ -9,8 +9,15 @@ router.get('/', function (req, res) {
 
 router.get('/users/:name', (req, res) => {
     const user = {name: req.params.name};
-    const userTweet = tweetBank.find(user);
-    res.render(userTweet);
+    const userTweets = tweetBank.find(user);
+    res.render('index', {tweets: userTweets} );
 });
 
+router.get('/tweets/:id', (req, res) => {
+  const tweetId = {id: req.params.id};
+  console.log('tweetId', tweetId);
+  const tweet = tweetBank.find(tweetId);
+  console.log('tweet', tweet);
+  res.render('index', {tweets: tweet});
+});
 module.exports = router;
