@@ -13,24 +13,9 @@ const data = {
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 app.use(morgan('combined'));
-nunjucks.configure('views', { noCache: true });
-
+app.use(express.static('public'));
 app.use('/', routes);
-
-app.get('/stylesheets/style.css', (req, res) => {
-  res.render('/public/stylesheets/style.css');
-});
-// app.use((req, res, next) => {
-//     console.log(`${req.method} ${req.url} ${res.statusCode}`);
-//     next();
-// });
-//
-// app.use('/special', (req, res, next) => {
-//     console.log('special access');
-//     next();
-// });
-//
-// app.get('/', (req, res) => res.render('index', data))
+nunjucks.configure('views', { noCache: true });
 
 app.listen(3000, function(){
     console.log('server running');
