@@ -1,6 +1,17 @@
 const express = require( 'express' );
-const app = express();
 const morgan = require('morgan');
+const nunjucks = require('nunjucks');
+const app = express();
+
+const people = [{name: 'James'}, {name: 'Harry'}, {name: 'John'}];
+const data = {
+  title: 'test title',
+  people: people
+}
+
+app.set('view engine', 'html');
+app.engine('html', nunjucks.render);
+nunjucks.configure('views', { noCache: true });
 
 app.use(morgan('combined'));
 
@@ -14,7 +25,7 @@ app.use('/special', (req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => res.send('connected'))
+app.get('/', (req, res) => res.render('index', data))
 
 app.listen(3000, function(){
     console.log('server running');
